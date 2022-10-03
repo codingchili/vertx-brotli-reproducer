@@ -4,6 +4,8 @@
 When using the vertx http/2 server with brotli compression enabled as per the docs, certain files gets cut off. 
 I have a project that loads 40 resources on the index page, only two of these fail (one font, one js file).
 
+https://vertx.io/docs/vertx-core/java/#_http_compression_algorithms
+
 ### Tests
 Note: Built for JDK 17, the bundled version of Gradle does not support JDK 18.
 
