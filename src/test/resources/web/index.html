@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #212121;
+            color: #fff;
+            text-align: center;
+            font-family: Cambria, sans-serif;
+        }
+
+        .trigger-font-download {
+            font-family: 'bunny-font', 'Emoji', sans-serif;
+        }
+
+        @font-face {
+            font-family: "bunny-font";
+            src: local("Quantico"), url("font/Quantico-Regular.ttf") format("truetype");
+            font-display: swap;
+        }
+
+        a, a:visited, a:active {
+            color: greenyellow;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1>vertx-brotli-reproducer</h1>
+
+<h3>First test</h3>
+check console for ..
+<pre>
+Failed to decode downloaded font: https://localhost:35350/font/Quantico-Regular.ttf
+localhost/:1 OTS parsing error: glyf: table overruns end of file
+</pre>
+
+<h3>Second test</h3>
+Browse the following <a href="./app-view.js">link</a> and verify that it is cut-off after the _home function declaration.
+
+<span class="trigger-font-download"></span>
+</body>
+</html>
