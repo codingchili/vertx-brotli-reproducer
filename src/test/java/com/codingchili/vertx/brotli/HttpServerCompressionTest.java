@@ -18,7 +18,7 @@ public abstract class HttpServerCompressionTest {
     private final Logger logger = Logger.getLogger(getClass().getSimpleName());
     private static Vertx vertx;
     private static HttpServer server;
-    private TestContext test;
+    protected TestContext test;
 
     @BeforeClass
     public static void setUpClass(TestContext test) {
@@ -42,17 +42,17 @@ public abstract class HttpServerCompressionTest {
     }
 
     @Test
-    public void requestIndexPage() {
+    public void verifyHttpResourceDecompressionForIndex() {
         requestAndCompare("/index.html");
     }
 
     @Test
-    public void requestWebFont() {
+    public void verifyHttpResourceDecompressionForFont() {
         requestAndCompare("/font/Quantico-Regular.ttf");
     }
 
     @Test
-    public void requestAppViewJs() {
+    public void verifyHttpResourceDecompressionForAppView() {
         requestAndCompare("/app-view.js");
     }
 
@@ -72,7 +72,7 @@ public abstract class HttpServerCompressionTest {
                 }).onFailure(test::fail);
     }
 
-    private Future<Buffer> loadFile(String path) {
+    protected Future<Buffer> loadFile(String path) {
         return vertx.fileSystem().readFile(
                 Paths.get(CompressingHttpServer.WEBROOT, path).toAbsolutePath().toString()
         );
