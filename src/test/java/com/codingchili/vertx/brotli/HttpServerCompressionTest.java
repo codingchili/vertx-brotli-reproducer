@@ -16,36 +16,29 @@ import java.util.logging.Logger;
 public abstract class HttpServerCompressionTest {
     private static final String HOST = "localhost";
     private final Logger logger = Logger.getLogger(getClass().getSimpleName());
-    private Vertx vertx;
-    private HttpServer server;
+    private static Vertx vertx;
+    private static HttpServer server;
     private TestContext test;
 
-    /**
-     * @return string matching the accepted content type for the compression being tested.
-     */
-    protected abstract CharSequence acceptedContentType();
-
-    /**
-     * @param buffer a compressed buffer to decode matching the accepted content type.
-     * @return decompressed buffer.
-     */
-    protected abstract Buffer decompress(Buffer buffer) throws Exception;
-
-    @Before
-    public void setUp(TestContext test) {
-        this.test = test;
-        this.vertx = Vertx.vertx();
+    @BeforeClass
+    public static void setUpClass(TestContext test) {
+        vertx = Vertx.vertx();
 
         var async = test.async();
         createServer(vertx).onSuccess(server -> {
-            this.server = server;
+            HttpServerCompressionTest.server = server;
             async.complete();
         }).onFailure(test::fail);
     }
 
-    @After
-    public void teardown(TestContext test) {
+    @AfterClass
+    public static void teardown(TestContext test) {
         vertx.close(test.asyncAssertSuccess());
+    }
+
+    @Before
+    public void setUp(TestContext test) {
+        this.test = test;
     }
 
     @Test
@@ -122,7 +115,18 @@ public abstract class HttpServerCompressionTest {
         );
     }
 
-    protected Future<HttpServer> createServer(Vertx vertx) {
+    private static Future<HttpServer> createServer(Vertx vertx) {
         return CompressingHttpServer.create(vertx);
     }
+
+    /**
+     * @return string matching the accepted content type for the compression being tested.
+     */
+    protected abstract CharSequence acceptedContentType();
+
+    /**
+     * @param buffer a compressed buffer to decode matching the accepted content type.
+     * @return decompressed buffer.
+     */
+    protected abstract Buffer decompress(Buffer buffer) throws Exception;
 }
