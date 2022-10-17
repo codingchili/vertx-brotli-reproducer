@@ -11,10 +11,11 @@ Note: Built for JDK 17, the bundled version of Gradle does not support JDK 18.
 
 ```shell
 ./gradlew test
+./gradlew test --info
 
 # or ..
 
-./gradlew test --info
+./mvnw test
 ```
 
 This starts a HTTP/2 TLS server with GZIP/BR compression enabled.
@@ -75,4 +76,4 @@ BUILD FAILED in 4s
 ```
 
 Run with `--info` for logging and stack traces, unfortunately brotli
-decompression does not return any detailed error message only a `com.aayushatharva.brotli4j.decoder.DecoderJNI.Status` enum value.  
+decompression does not return any detailed error message only a `com.aayushatharva.brotli4j.decoder.DecoderJNI.Status` enum value.
