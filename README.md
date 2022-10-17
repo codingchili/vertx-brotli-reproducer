@@ -1,5 +1,7 @@
 # vertx-brotli-reproducer
 
+Issue: https://github.com/eclipse-vertx/vert.x/issues/4501
+
 ### Description
 When using the vertx http/2 server with brotli compression enabled as per the docs, certain files gets cut off. 
 I have a project that loads 40 resources on the index page, only two of these fail (one font, one js file).
