@@ -38,7 +38,7 @@ public class CompressingHttpServer {
                 .listen(-1, (done) -> {
                     if (done.succeeded()) {
                         var port = done.result().actualPort();
-                        logger.info("server listening on https://localhost:%d".formatted(port));
+                        logger.info(String.format("server listening on https://localhost:%d", port));
                         promise.complete(done.result());
                     } else {
                         logger.log(Level.WARNING, "failed to listen", done.cause());

@@ -16,7 +16,7 @@ public class Main {
                 var port = server.actualPort();
                 // open default browser.
                 Desktop.getDesktop().browse(
-                        URI.create("https://localhost:%d/".formatted(port))
+                        URI.create(String.format("https://localhost:%d/", port))
                 );
             } catch (Exception e) {
                 // no desktop available.
