@@ -2,6 +2,14 @@
 
 Issue: https://github.com/eclipse-vertx/vert.x/issues/4501
 
+### Status: Fixed
+
+fixed in: vert.x 4.1.x (netty 4.1.89.Final)
+see: 
+- https://netty.io/news/2023/02/13/4-1-89-Final.html
+- https://github.com/netty/netty/issues/12909
+- https://github.com/netty/netty/pull/12924
+
 ### Description
 When using the vertx http/2 server with brotli compression enabled as per the docs, certain files gets cut off. 
 I have a project that loads 40 resources on the index page, only two of these fail (one font, one js file).
